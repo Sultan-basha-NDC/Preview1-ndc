@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallary</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement cell</title>
+  <style>
 * {
     margin: 0;
     padding: 0;
@@ -238,6 +238,8 @@ nav {
 .dropdown-content a:hover {
     background: #ff6b35;
 }
+
+/* Active state for mobile */
 .dropdown.active > .dropdown-content {
     display: flex;
 }
@@ -248,34 +250,39 @@ nav {
 
 /* ========================
    TABLET/DESKTOP (768px+)
+   
 ======================== */
 @media (min-width: 768px) {
+    /* Hide mobile toggle */
     .menu-toggle {
         display: none;
     }
 
-    
+    /* CRITICAL FIX: Remove flex-wrap and make nav-content fit properly */
     .nav-content {
-        flex-wrap: nowrap; 
-        gap: 0; 
+        flex-wrap: nowrap;  
+        gap: 0;  
     }
+
+    /* Show navigation links */
     .nav-links {
         display: flex !important;
         flex-direction: row;
         align-items: center;
-        gap: 0;  /* Start with no gap */
+        gap: 0;  
         width: auto;
-        flex-wrap: nowrap;  /* Prevent items from wrapping */
+        flex-wrap: nowrap;  
     }
 
-
+    
     .nav-links > a,
     .drop-btn {
-        padding: 10px 12px;  /* Reduced horizontal padding */
+        padding: 10px 12px; 
         white-space: nowrap;
-        font-size: 0.95rem;  /* Slightly smaller font */
+        font-size: 0.95rem;  
     }
 
+    /* Reset button width for desktop */
     .drop-btn {
         width: auto;
     }
@@ -309,7 +316,7 @@ nav {
         border-radius: 4px;
     }
 
-    /* Show on hover (desktop only) */
+    
     .dropdown:hover > .dropdown-content {
         display: flex !important;
         flex-direction: column;
@@ -323,7 +330,7 @@ nav {
         transform: rotate(180deg);
     }
 
-
+    /* Remove mobile active class behavior on desktop */
     .dropdown.active > .dropdown-content {
         display: none;
     }
@@ -361,6 +368,7 @@ nav {
 
 /* ========================
    MEDIUM DESKTOP (992px+)
+   Add spacing when there's more room
 ======================== */
 @media (min-width: 992px) {
     .nav-content {
@@ -394,9 +402,173 @@ nav {
         min-width: 220px;
     }
 }
+        /* Sidebar Navigation */
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
+        .sidebar-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
 
+        .sidebar-item:hover {
+            background: #f8f9fa;
+        }
+
+        .sidebar-item.active {
+            background: #003366;
+            color: white;
+            font-weight: 600;
+        }
+
+        .sidebar-item::after {
+            content: '›';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .sidebar-item.active::after {
+            content: '›';
+        }
+
+        /* Main Content Area */
+        .main-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section h2 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ffd700;
+            display: inline-block;
+        }
+
+        .content-section h3 {
+            color: #003366;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .content-section li::before {
+            content: '→ ';
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #003366;
+        }
+
+        /* Tablet and above */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .content-wrapper {
+                flex-direction: row;
+                gap: 30px;
+                padding: 40px 20px;
+            }
+
+            .sidebar {
+                flex: 0 0 250px;
+                margin-bottom: 0;
+                align-self: flex-start;
+                position: sticky;
+                top: 20px;
+            }
+
+            .main-content {
+                flex: 1;
+                padding: 40px;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .sidebar {
+                flex: 0 0 280px;
+            }
+
+            .content-wrapper {
+                padding: 50px 40px;
+            }
+
+            .main-content {
+                padding: 50px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .hero {
+                padding: 100px 20px;
+            }
+        }
 /* Hero Section */
         .hero {
             height: 400px;
@@ -455,59 +627,6 @@ nav {
       font-size: 1rem;
       margin-top: 0.4rem;
     }
-
-    /* Gallery full width */
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-      padding: 0.8rem;
-      width: 100%;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      display: block;
-      object-fit: cover;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.02);
-    }
-
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 1rem;
-    }
-
-    /* Tablet */
-    @media (min-width: 600px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* Desktop */
-    @media (min-width: 900px) {
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    /* Large Desktop */
-    @media (min-width: 1200px) {
-      .gallery {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
 /* Footer */
 .footer {
   background: #1a2f5c; 
@@ -678,10 +797,8 @@ nav {
 }
 
 
-
-
-</style>
-
+  </style>
+</head>
 <body>
       <!-- Header -->  
     <header class="header">  
@@ -699,6 +816,8 @@ nav {
             </div>  
         </div>  
     </header>  
+  
+
     <!-- Navigation -->  
     <nav>
    <div class="nav-section">
@@ -773,9 +892,9 @@ nav {
 <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>NDC GALLARY</h1>
+            <h1>Placement</h1>
             <div class="breadcrumb">
-                <a href="/website/index.html">Home</a> > GALLARY
+                <a href="/index.html">Home</a> > placement 
             </div>
         </div>
     </section>
@@ -783,26 +902,126 @@ nav {
     <!-- Welcome Section -->  
 <section class="welcome-section">  
     <div class="container">  
-        
+        <h2>💻️ 🖥️ ⚙️</h2>  
         <div class="welcome-text">  
-            <p>SPACIOUS VIEWS OF OUR COLLEGE.</p>  
+            <p>placement cell with training for practical learning.</p>  
         </div>  
     </div>  
 </section>  
-  </header>
 
-  <main>
-    <div class="gallery">
-      <img src="https://picsum.photos/1200/800?random=1" alt="Library Image 1">
-      <img src="https://picsum.photos/1200/800?random=2" alt="Library Image 2">
-      <img src="https://picsum.photos/1200/800?random=3" alt="Library Image 3">
-      <img src="https://picsum.photos/1200/800?random=4" alt="Library Image 4">
-      <img src="https://picsum.photos/1200/800?random=5" alt="Library Image 5">
-      <img src="https://picsum.photos/1200/800?random=6" alt="Library Image 6">
-      <img src="https://picsum.photos/1200/800?random=7" alt="Library Image 7">
-      <img src="https://picsum.photos/1200/800?random=8" alt="Library Image 8">
+    <!-- Main Content Area -->
+    <div class="maincontainer">
+        <div class="content-wrapper">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-item active" data-target="about">About</div>
+                <div class="sidebar-item" data-target="vision">Vision</div>
+                <div class="sidebar-item" data-target="mission">Mission</div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- About Section -->
+                <div id="about" class="content-section active">
+                    <h2>About</h2>
+                    <h3>About Placement Cell – Empowering Careers, Shaping Futures</h3>
+                    <p>The <span class="highlight">Placement Cell</span> of our college is dedicated to bridging the gap between education and employment by equipping students with the necessary skills, knowledge, and opportunities to excel in their careers. We take a holistic approach to career development, ensuring that our students are well-prepared to meet industry expectations and challenges.</p>
+
+                    <h3>Our Key Initiatives</h3>
+                    
+                    <h3>1. In-Campus Training with a Dedicated Team</h3>
+                    <p>To enhance the employability of our students, we provide <span class="highlight">comprehensive in-campus training</span> led by our <span class="highlight">permanent training team</span>. This team consists of industry experts and experienced faculty members who conduct regular sessions on:</p>
+                    <ul>
+                        <li>Soft skills development (communication, leadership, teamwork, etc.)</li>
+                        <li>Technical and domain-specific skills</li>
+                        <li>Aptitude and logical reasoning training</li>
+                        <li>Resume building and interview preparation</li>
+                    </ul>
+
+                    <h3>2. Collaboration with Government & Non-Government Organizations</h3>
+                    <p>We partner with various <span class="highlight">government and non-government organizations</span> like APSSDC (Andhra Pradesh State Skill Development Corporation), APITA (Andhra Pradesh Information Technology Academy), Wadhwani Foundation etc to provide specialized training programs. These collaborations help students gain:</p>
+                    <ul>
+                        <li>Established a Employability Skill centre (ESC) by APSSDC to conduct regular training for un-employed youth and also the students in the campus.</li>
+                        <li>The infrastructure like Laptops are provided by the APSSDC.</li>
+                        <li>Certification courses in <span class="highlight">programming, data analytics, AI/ML, cybersecurity, and other emerging fields</span></li>
+                        <li>Hands-on experience through workshops, internships, and live projects</li>
+                        <li>Training in <span class="highlight">professional ethics, corporate culture, and workplace adaptability</span></li>
+                    </ul>
+
+                    <h3>3. Keeping Up with Emerging Technologies</h3>
+                    <p>The Placement Cell actively keeps students updated on the latest trends and innovations in the technical world. Through <span class="highlight">seminars, expert talks, webinars, and industry interactions</span>, students get exposure to:</p>
+                    <ul>
+                        <li>Artificial Intelligence & Machine Learning</li>
+                        <li>Cloud Computing & Cybersecurity</li>
+                        <li>Internet of Things (IoT) & Blockchain</li>
+                        <li>Financial Technology (FinTech)</li>
+                        <li>Bioinformatics & Pharmaceutical advancements</li>
+                    </ul>
+
+                    <h3>4. Industry-Specific Placement Training</h3>
+                    <p>Before companies visit the campus for recruitment, we conduct <span class="highlight">company-specific training programs</span> to prepare students for the hiring process. These training sessions include:</p>
+                    <ul>
+                        <li>Understanding company profiles, job roles, and expectations</li>
+                        <li>Mock interviews and group discussions</li>
+                        <li>Technical assessments and coding practice</li>
+                        <li>HR and behavioral training</li>
+                    </ul>
+
+                    <h3>5. Placement Opportunities Across Multiple Sectors</h3>
+                    <p>We actively connect students with job opportunities across various industries, including:</p>
+                    <ul>
+                        <li>Information Technology & Software Development</li>
+                        <li>Core Engineering & Manufacturing</li>
+                        <li>Banking, Finance & Consulting</li>
+                        <li>Healthcare & Pharmaceuticals</li>
+                        <li>E-commerce & Digital Marketing</li>
+                    </ul>
+                </div>
+
+                <!-- Vision Section -->
+                <div id="vision" class="content-section">
+                    <h2>Vision</h2>
+                    <p>To be a leading placement cell that bridges the gap between academia and industry, empowering students with world-class skills, knowledge, and opportunities to excel in their professional careers.</p>
+                    <p>We envision creating a dynamic ecosystem where every student is industry-ready, globally competitive, and equipped with the right mindset to succeed in an ever-evolving job market.</p>
+                    
+                    <h3>Our Commitment</h3>
+                    <ul>
+                        <li>Fostering strong industry partnerships for better placement opportunities</li>
+                        <li>Providing continuous skill development and career guidance</li>
+                        <li>Ensuring 100% placement assistance for eligible students</li>
+                        <li>Promoting entrepreneurship and innovation</li>
+                        <li>Building a network of successful alumni who inspire future generations</li>
+                    </ul>
+                </div>
+
+                <!-- Mission Section -->
+                <div id="mission" class="content-section">
+                    <h2>Mission</h2>
+                    <p>Our mission is to prepare students for successful careers by providing comprehensive training, industry exposure, and placement support that aligns with current market demands.</p>
+                    
+                    <h3>Key Objectives</h3>
+                    <ul>
+                        <li><span class="highlight">Skill Enhancement:</span> Conduct regular training programs on technical skills, soft skills, and aptitude development</li>
+                        <li><span class="highlight">Industry Connect:</span> Establish strong ties with leading companies and organizations for internships and placements</li>
+                        <li><span class="highlight">Career Guidance:</span> Provide personalized career counseling and mentorship programs</li>
+                        <li><span class="highlight">Placement Support:</span> Facilitate campus recruitment drives and off-campus placement opportunities</li>
+                        <li><span class="highlight">Continuous Learning:</span> Keep students updated with emerging technologies and industry trends</li>
+                        <li><span class="highlight">Holistic Development:</span> Focus on overall personality development and professional ethics</li>
+                    </ul>
+
+                    <h3>Our Approach</h3>
+                    <p>We follow a structured approach to ensure maximum placement success:</p>
+                    <ul>
+                        <li>Early identification of student strengths and areas of improvement</li>
+                        <li>Customized training modules based on industry requirements</li>
+                        <li>Regular mock interviews and assessment tests</li>
+                        <li>Company-specific preparation sessions</li>
+                        <li>Post-placement support and alumni engagement</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
     </div>
-  </main>
 
  <!--new footer -->
 
@@ -905,33 +1124,34 @@ nav {
             }
         });
 
+        // Sidebar navigation functionality
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const contentSections = document.querySelectorAll('.content-section');
 
- // Add loading animation for images
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.library-image');
-            
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all sidebar items
+                sidebarItems.forEach(si => si.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
+                // Hide all content sections
+                contentSections.forEach(section => section.classList.remove('active'));
 
-            images.forEach(img => {
-                img.style.opacity = '0';
-                img.style.transform = 'translateY(20px)';
-                img.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(img);
+                // Show target content section
+                const target = this.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+
+                // Smooth scroll to top of content on mobile
+                if (window.innerWidth < 768) {
+                    document.querySelector('.main-content').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
   </script>
 </body>
-
 </html>
