@@ -1257,3 +1257,123 @@ Tablet screens (768px) */
     font-size: 18px;
   }
 }
+
+
+
+    .reviews-section {
+      width: 100%;
+      padding: 20px 0;
+      border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+      color: white;
+    }
+
+    .section-header h1 {
+      font-family: ar;
+      font-size: 1.8em;
+      color: #ff6b35;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .section-header p {
+      font-family: sans-serif;
+      font-size: 0.95em;
+      opacity: 1;
+      color: #1a2f5c;
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .reviews-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .review-card {
+      flex: 0 0 100%;
+      max-width: 100%;
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      scroll-snap-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: 5px;
+      left: 15px;
+      font-size: 70px;
+      color: #667eea;
+      opacity: 0.1;
+      font-family: Georgia, serif;
+    }
+
+    .student-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .student-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px 0px;
+      object-fit: cover;
+      border: 3px solid #667eea;
+      margin-right: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .student-details h3 {
+      font-size: 1.1em;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .student-branch {
+      color: #1a2f5c;
+      font-weight: 600;
+      font-size: 0.85em;
+    }
+
+    .review-text {
+      color: #555;
+      line-height: 1.6;
+      font-size: 0.9em;
+      margin-bottom: 12px;
+    }
+
+    .star-rating {
+      color: #ffd700;
+      font-size: 1.1em;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .review-card {
+        padding: 40px;
+      }
+    }
