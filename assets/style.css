@@ -243,7 +243,7 @@ nav {
 
 /* ========================
    TABLET/DESKTOP (768px+)
-   THIS IS THE KEY FIX
+   
 ======================== */
 @media (min-width: 768px) {
     /* Hide mobile toggle */
@@ -253,8 +253,8 @@ nav {
 
     /* CRITICAL FIX: Remove flex-wrap and make nav-content fit properly */
     .nav-content {
-        flex-wrap: nowrap;  /* Prevent wrapping */
-        gap: 0;  /* Remove gap initially */
+        flex-wrap: nowrap;  
+        gap: 0;  
     }
 
     /* Show navigation links */
@@ -262,17 +262,17 @@ nav {
         display: flex !important;
         flex-direction: row;
         align-items: center;
-        gap: 0;  /* Start with no gap */
+        gap: 0;  
         width: auto;
-        flex-wrap: nowrap;  /* Prevent items from wrapping */
+        flex-wrap: nowrap;  
     }
 
-    /* Adjust padding to control spacing */
+    
     .nav-links > a,
     .drop-btn {
-        padding: 10px 12px;  /* Reduced horizontal padding */
+        padding: 10px 12px; 
         white-space: nowrap;
-        font-size: 0.95rem;  /* Slightly smaller font */
+        font-size: 0.95rem;  
     }
 
     /* Reset button width for desktop */
@@ -309,7 +309,7 @@ nav {
         border-radius: 4px;
     }
 
-    /* Show on hover (desktop only) */
+    
     .dropdown:hover > .dropdown-content {
         display: flex !important;
         flex-direction: column;
@@ -408,7 +408,6 @@ nav {
   max-width: 1000px;
   margin: auto;
   overflow: hidden;
-  border-radius: 15px;
 }
 
 .content-grid {  
