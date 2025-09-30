@@ -1338,8 +1338,8 @@ Tablet screens (768px) */
     }
 
     .student-photo {
-      width: 100px;
-      height: 100px;
+      width: 125px;
+      height: 125px;
       border-radius: 10px 0px;
       object-fit: cover;
       border: 3px solid #667eea;
