@@ -644,8 +644,9 @@ nav {
 .placements-section {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin:10px;
     padding: 40px 20px;
 }
 
@@ -675,6 +676,9 @@ nav {
     flex-direction: column; 
     align-items: center;
     gap: 30px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 .placement-stats {
     display: flex;
@@ -1377,3 +1381,213 @@ Tablet screens (768px) */
         padding: 40px;
       }
     }
+    
+    
+    .techcontainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  background-color: #dfdfdf;
+}
+.techcontainer::after {
+  content: " ";
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-100%);
+  background-image: linear-gradient(orange, magenta);
+  border-radius: 50%;
+  z-index: -1;
+  border: 2px solid #ffffffa6;
+  box-shadow: inset 10px 0px 20px #fff;
+  animation: ani 28s ease-in-out infinite;
+}
+.techcontainer::before {
+  content: " ";
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: 46%;
+  bottom: 25%;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, orange, magenta);
+  border-radius: 50%;
+  z-index: -1;
+  border: 2px solid #ffffffa6;
+  box-shadow: inset 10px 0px 20px #fff;
+}
+.technical-section {
+  padding: 20px;
+  background-color: #dfdfdf;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+/* Background gradient circles */
+.technical-section::after,
+.technical-section::before {
+  content: " ";
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  border: 2px solid #ffffffa6;
+  box-shadow: inset 10px 0px 20px #fff;
+}
+
+.technical-section::after {
+  height: 150px;
+  width: 150px;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-100%);
+  background-image: linear-gradient(orange, magenta);
+  animation: ani 28s ease-in-out infinite;
+}
+
+.technical-section::before {
+  height: 80px;
+  width: 80px;
+  left: 46%;
+  bottom: 25%;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, orange, magenta);
+}
+
+/* Card styles */
+.tcard {
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ffffff56;
+  border-radius: 10px;
+  backdrop-filter: blur(10.5px);
+  padding: 15px;
+  margin: 10px;
+  position: relative;
+  box-shadow: inset 2px 1px 6px #ffffff45;
+  overflow: hidden;
+}
+
+.tcard::after {
+  z-index: -1;
+  content: " ";
+  position: absolute;
+  width: 150%;
+  top: 0;
+  left: 0;
+  height: 10px;
+  background: #ffffff;
+  transform: rotateZ(50deg);
+  filter: blur(30px);
+  animation: shine 10s ease infinite;
+}
+
+.innerText {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image:linear-gradient(90deg, rgb(0, 0, 0), rgb(116, 111, 111));
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2em;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.desc {
+  padding: 4px;
+  color: #3a3939;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes ani {
+  0% { transform: translateX(0%) scale(1); }
+  50% { transform: translateX(-100%) scale(0.8); }
+  100% { transform: translateX(0%) scale(1); }
+}
+
+@keyframes shine {
+  0% { top: 100%; left: -100%; }
+  50%, 100% { top: 0%; left: 70%; }
+}
+
+/* =========================
+   TABLET STYLES
+========================= */
+@media (min-width: 600px) {
+  .technical-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .tcard {
+    max-width: 220px;
+  }
+
+  .innerText {
+    font-size: 32px;
+  }
+
+  .desc {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   DESKTOP STYLES
+========================= */
+@media (min-width: 992px) {
+  .technical-section {
+    gap: 30px;
+  }
+
+  .tcard {
+    max-width: 250px;
+  }
+
+  .innerText {
+    font-size: 36px;
+  }
+
+  .desc {
+    font-size: 16px;
+  }
+}
+.tech-heading {
+  text-align: center;
+  color: #ff6b35;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background-image:#ff6b35;
+  -webkit-background-clip: text;
+}
+
+/* Responsive heading */
+@media (min-width: 600px) {
+  .tech-heading {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 992px) {
+  .tech-heading {
+    font-size: 36px;
+  }
+}
