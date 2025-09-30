@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact us</title>
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+.container {
+    width: 100%;
+    padding: 0 12px;
+    margin: 0 auto;
+}
+
+/* ========================
+   HEADER STYLES
+======================== */
+.header {
+    background: #fff;
+    padding: 15px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.logo-img-header {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.college-info {
+    width: 100%;
+    padding: 10px 12px;
+    text-align: center;
+}
+
+.college-info h1 {
+    font-size: 1.65rem;
+    color: #ff6b35;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.affiliated-text {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #1a2f5c;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.college-info p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+@media (min-width: 768px) {
+    .header-content {
+        flex-direction: row;       
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;        
+        margin: 0 auto;          
+    }
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+    .logo-section {
+        gap: 15px;
+    }
+    .college-info h1 {
+        font-size: 2.5rem;
+    }
+    .affiliated-text {
+        font-size: 1.1rem;
+    }
+    .college-info p {
+        font-size: 1rem;
+    }
+}
+
+/* ========================
+   NAVIGATION (Mobile First)
+======================== */
+nav {
+    width: 100%;
+    background: #1a2f5c;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Mobile Toggle Button */
+.menu-toggle {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    font-size: 1rem;
+}
+
+/* Navigation Links Container */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+/* Direct navigation links */
+.nav-links > a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    display: block;
+}
+
+.nav-links > a:hover {
+    background: #ff6b35;
+}
+
+/* ========================
+   DROPDOWN STYLES
+======================== */
+.dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.drop-btn:hover {
+    background: #ff6b35;
+}
+
+.nav-arrow {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    background: #2a3e66;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background: #ff6b35;
+}
+
+/* Active state for mobile */
+.dropdown.active > .dropdown-content {
+    display: flex;
+}
+
+.dropdown.active > .drop-btn .nav-arrow {
+    transform: rotate(180deg);
+}
+
+/* ========================
+   TABLET/DESKTOP (768px+)
+======================== */
+@media (min-width: 768px) {
+    /* Hide mobile toggle */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Show navigation links */
+    .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        width: auto;
+        flex-wrap: wrap;
+    }
+
+    /* Reset button width for desktop */
+    .drop-btn {
+        width: auto;
+        padding: 10px 15px;
+    }
+
+    .nav-links > a {
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+
+    /* Dropdown positioning - FIXED */
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        margin-top: 5px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        border-radius: 5px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    /* Custom scrollbar */
+    .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: #1a2f5c;
+        border-radius: 4px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background: #ff6b35;
+        border-radius: 4px;
+    }
+
+    /* Show on hover (desktop only) */
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .dropdown:hover > .drop-btn {
+        background: #ff6b35;
+    }
+
+    .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Remove mobile active class behavior on desktop */
+    .dropdown.active > .dropdown-content {
+        display: none;
+    }
+
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+    }
+
+    /* Nested dropdowns */
+    .dropdown-content .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content .drop-btn {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dropdown-content .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown-content {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 2px;
+    }
+}
+
+/* ========================
+   LARGE DESKTOP (1200px+)
+======================== */
+@media (min-width: 1200px) {
+    .nav-content {
+        gap: 30px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .dropdown-content {
+        min-width: 240px;
+    }
+}
+
+/* ========================
+   HERO SECTION
+======================== */
+.hero {
+    height: 400px;
+    background: linear-gradient(rgba(25, 55, 109, 0.4), rgba(25, 55, 109, 0.4)), 
+                url('https://i.postimg.cc/nhcgRD9Q/20250901-171648.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.breadcrumb a {
+    color: #FF6B35;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+    color: #FF8C5A;
+}
+
+/* ========================
+   CONTACT SECTION
+======================== */
+.contact-section {
+    padding: 40px 20px;
+    background: #fff;
+    max-width: 1000px;
+    margin: 40px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.contact-section h2 {
+    color: #ff6600;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+form textarea {
+    resize: none;
+    height: 120px;
+}
+
+form button {
+    background: #0077cc;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #005fa3;
+}
+
+.map-section {
+    margin: 40px 20px;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========================
+   FOOTER
+======================== */
+.footer {
+    background: #1a2f5c; 
+    color: white;
+    padding: 40px 20px;
+    border-radius: 15px 15px 0 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer a {
+    color: #ff6b35;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-logo-section {
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo img {
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.footer-logo h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ff6b35;
+}
+
+.footer-logo-section p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.quick-links {
+    text-align: center;
+}
+
+.quick-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ff6b35;
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links ul li {
+    margin-bottom: 8px;
+}
+
+.map-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ff6b35;
+    text-align: center;
+}
+
+.map-widget iframe {
+    width: 100%;
+    height: 220px;
+    border: 0;
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .footer-logo-section, .quick-links, .footer .map-section {
+        flex: 1;
+        text-align: left;
+    }
+
+    .footer-logo {
+        align-items: flex-start;
+    }
+
+    .map-widget iframe {
+        height: 250px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-logo h3 {
+        font-size: 1.6rem;
+    }
+}
+  </style>
+</head>
+
+<body>
+    <!-- Header -->  
+    <header class="header">  
+        <div class="container">  
+            <div class="header-content">  
+                <div class="logo-section">  
+                    <div class="logo">
+                        <img class="logo-img-header" src="https://i.postimg.cc/VknRXB1B/1000340942-removebg-preview.png" loading="lazy" alt="college logo">
+                    </div>  
+                    <div class="college-info">  
+                        <h1>NATIONAL DEGREE COLLEGE</h1>
+                        <p><span class="affiliated-text">(Affiliated with Rayalaseema University, Kurnool)</span></p>   
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+    </header>  
+
+    <!-- Navigation -->  
+    <nav>
+        <div class="nav-section">
+            <div class="container nav-content">
+                <!-- Mobile Toggle Button -->
+                <button class="menu-toggle">☰ Menu</button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <a href="/index.html">Home</a>
+                    <a href="/about.html">About</a>
+                    <a href="/website/pages/contact-us.html">Contact</a>
+
+                    <!-- Academics Dropdown -->
+                    <div class="dropdown">
+                        <button class="drop-btn">
+                            Academics
+                            <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/website/pages/college-broucher.html">College Brochure</a>
+                            <a href="/website/pages/admissions.html">Admissions</a>
+                            <a href="/website/pages/Gallery.html">Gallery</a>
+                        </div>
+                    </div>
+
+                    <!-- Departments Dropdown -->
+                    <div class="dropdown">
+                        <button class="drop-btn">
+                            Departments
+                            <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/website/pages/departments/laguages-department.html">Languages</a>
+                            <a href="/website/pages/departments/cs-department.html">Computer Science</a>
+                            <a href="/website/pages/department/lifescience-department.html">Life Sciences</a>
+                            <a href="/website/pages/departments/maths-department.html">Mathematics</a>
+                        </div>
+                    </div>
+
+                    <!-- Facilities Dropdown -->
+                    <div class="dropdown">
+                        <button class="drop-btn">
+                            Facilities
+                            <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/website/pages/facilities/clab.html">Computer Lab</a>
+                            <a href="/website/pages/facilities/mph.html">Multi Purpose Hall</a>
+                            <a href="/website/pages/facilities/library.html">Library</a>
+                            <a href="/website/pages/facilities/parking.html">Parking</a>
+                        </div>
+                    </div>
+
+                    <a href="#">Placements</a>
+                    <a href="/website/pages/eresources.html">E.Res</a>
+                        
+                    <a href="/website/pages/news.html">News</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="/website/index.html">Home</a> > CONTACT US
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Info + Form -->
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="info">
+            <p><strong>Address:</strong> National Degree College, Srinivasa Nagar, Nandyal - 518501</p>
+            <p><strong>Phone:</strong> +91 87774 66636</p>
+            <p><strong>Email:</strong> nationaldegreecollege@gmail.com</p>
+        </div>
+
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <iframe
+            src="https://www.google.com/maps?q=National+Junior+Degree+College+Nandyala&z=16&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="logo">
+                            <img src="https://i.postimg.cc/VknRXB1B/1000340942-removebg-preview.png" alt="College Logo">
+                        </div>
+                        <div><h3>NATIONAL DEGREE COLLEGE</h3></div>
+                    </div>
+                    <p>📍 Srinivasa Nagar, Nandyal - 518501</p>
+                    <p>Andhra Pradesh - India</p>
+                    <p>📧 nationaldegreecollege@gmail.com</p>
+                    <p>📞 +91 87774 66636</p>
+                </div>
+
+                <div class="quick-links">  
+                    <h3>Quick Links</h3>  
+                    <ul>  
+                        <li><a href="#">📅 Events</a></li>  
+                        <li><a href="#">📤 Exports</a></li>  
+                        <li><a href="#">👨‍🏫 Expert Views</a></li>  
+                        <li><a href="#">ℹ️ Information</a></li>  
+                    </ul>  
+                </div>
+
+                <div class="map-section">
+                    <h3>Find Us</h3>
+                    <div class="map-widget">
+                        <iframe  
+                            src="https://www.google.com/maps?q=National+Junior+Degree+College+Nandyala&z=16&output=embed"  
+                            allowfullscreen=""  
+                            loading="lazy"  
+                            referrerpolicy="no-referrer-when-downgrade">  
+                        </iframe>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Dropdown Toggle for Mobile Only
+        const dropdownButtons = document.querySelectorAll('.drop-btn');
+
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Only toggle on mobile (screen width < 768px)
+                if (window.innerWidth < 768) {
+                    e.stopPropagation();
+                    const dropdown = this.closest('.dropdown');
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown').forEach(dd => {
+                        if (dd !== dropdown) {
+                            dd.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside (mobile only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 768) {
+                const isClickInsideNav = event.target.closest('nav');
+                if (!isClickInsideNav) {
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    // Close mobile menu if clicking outside
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            }
+        });
+
+        // Clean up on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                // Remove active class from dropdowns on desktop
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

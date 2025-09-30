@@ -1,0 +1,371 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>About</title>
+        <style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding:0;
+    line-height: 1.6;
+    background: #fff;
+    min-height: 100vh;
+
+}
+header{
+    background: #1a2f5c;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.header h1{
+    margin: 0;
+    font-size: clamp(1.5rem, 5vw, 2rem)
+}
+.about-section{
+    flex: 1;
+    max-width: 1100px;
+    width:90%;
+    margin: 40px auto;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+.about-section h2{
+    text-align: center;
+    color: #1a2f5c;
+    margin-bottom:20px ;
+    font-size: clamp(1.5rem, 4vw, 2rem)
+}
+.about-section p{
+    text-align: justify;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+.card{
+    background: #ff6b35;
+    color: #fff;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: o 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.card h3{
+    margin-bottom: 10px;
+}
+@media (max-width:768px){
+.about-section
+{
+    padding: 30px 15px;
+}
+.card{
+    padding: 20px 15px;
+}
+    .cards{
+        grid-template-columns: 1fr;
+    }
+}
+
+.back-button-container {
+  position: relative;
+  top: 60px; 
+  background-color:transparent; 
+  margin: 10px;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.back-button {
+  background-color: #1a2f5c;
+  color: white;
+  border: none;
+  padding: 0.7em 1.5em; 
+  font-size: 1rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: auto;
+  max-width: 90%;
+  white-space: nowrap;
+}
+
+.back-button:hover {
+  background-color: #ff6b35;
+  transform: scale(1.05);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .back-button {
+    font-size: 1.1rem;
+    padding: 0.8em 2em;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .back-button {
+    font-size: 1.2rem;
+    padding: 1em 2.5em;
+  }
+}
+
+/* Footer */
+.footer {
+  background: #1a2f5c; 
+  color: white;
+  padding: 40px 20px;
+  border-radius: 15px 15px 0 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer a {
+  color: #ff6b35;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; 
+  gap: 30px;
+}
+
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.footer-logo-section {
+  text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.footer-logo h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ff6b35;
+}
+
+
+.footer-logo-section p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.quick-links {
+  text-align: center;
+}
+
+.quick-links h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ff6b35;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-links ul li {
+  margin-bottom: 8px;
+}
+
+
+.map-section {
+  text-align: center;
+}
+
+.map-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ff6b35;
+}
+
+.map-widget iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+  border-radius: 12px;
+}
+
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  background: #1a2f5c;
+  border-radius: 0 0 15px 15px;
+  font-size: 0.9rem;
+}
+
+
+
+/* all responsive media queries*/
+
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        padding: 0 20px;
+    }
+}
+
+/* Desktop and up */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        padding: 0 30px;
+    }
+}
+
+/* Tablet Screens (768px) */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .footer-logo-section, .quick-links, .map-section {
+    flex: 1;
+    text-align: left;
+  }
+
+  .footer-logo {
+    align-items: flex-start;
+  }
+
+  .map-widget iframe {
+    height: 250px;
+  }
+}
+
+/* Desktop Screens (1200px) */
+@media (min-width: 1200px) {
+  .footer-logo h3 {
+    font-size: 1.6rem;
+  }
+  .quick-links h3, .map-section h3 {
+    font-size: 1.4rem;
+  }
+  .footer-bottom {
+    font-size: 1rem;
+  }
+}
+            </style>
+</head>
+            <body>
+<header>
+                <h1>About Us</h1>
+                </header>
+                <div class="back-button-container">
+                   <a href="/index.html" class="back-button" >&#8592; Back </a>
+</div>
+                    <section class="about-section">
+                    <h2>Who are We</h2>
+                    <p>We are a passionate team dedicated to delivering Excellence in Everything we do.
+                        Our Organization was founded with a vision to Innovate, Inspire, and Bring meaningful changes to our community, we aim to provide value-driven solutions that last longer.                    </p>
+          <div class="cards">
+          <div class="card">
+            <h3>Our Mission</h3>
+            <p>
+To Empower individuals by delivering innovative, thoughtful mindsets and academic knowledge.
+            </p>
+            </div>
+
+            <div class="card">
+                <h3>Our Vision</h3>
+<p>
+    To be a Recognised Organization that Inspires Trust. Help Students and Individuals to be Innovative, and gain Excellence in the field they want to Serve.</p>
+    </div>
+    </div></section>
+                    </body>
+                    <!--new footer -->
+
+   <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo-section">
+          <div class="footer-logo">
+            <div class="logo">
+              <img class="footer-logo-last" src="img.jpeg" alt="colegeLogo">
+</div>
+<div><h3>NATIONAL DEGREE COLLEGE</h3></div></div>
+<p>📍 Srinivasa Nagar, Nandyal - 518501</p>
+<p>Andra Pradesh - India</p>
+<p>📧 nationaldegreecollege@gmail.com</p>
+<p> 📞+918777466636</p>
+</div>
+<div class="quick-links">  
+                    <h3>Quick Links</h3>  
+                    <ul>  
+                        <li><a href="#">📅 Events</a></li>  
+                        <li><a href="#">📤 Exports</a></li>  
+                        <li><a href="#">👨‍🏫 Expert Views</a></li>  
+                        <li><a href="#">ℹ️ Information</a></li>  
+                    </ul>  
+                    </div>
+                    <div class="map-section">
+                      <h3>Find Us</h3>
+                      <div class="map-widget">
+                        <iframe  
+            src="https://www.google.com/maps?q=National+Junior+Degree+College+Nandyala&z=16&output=embed"  
+            width="100%"  
+            height="220"  
+            style="border:0; border-radius: 12px;"  
+            allowfullscreen=""  
+            loading="lazy"  
+            referrerpolicy="no-referrer-when-downgrade">  
+        </iframe>  
+    </div>  </div>
+          <!-- Bottom Bar -
+  <div class="footer-bottom">
+    © 2025 National Degree College. All rights reserved.
+  </div> -->
+    </footer>
+
+    </body>
+    </html>

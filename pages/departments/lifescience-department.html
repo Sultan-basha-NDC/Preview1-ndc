@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+.container {
+    width: 100%;
+    padding: 0 12px;
+    margin: 0 auto;
+}
+
+/* ========================
+   HEADER STYLES
+======================== */
+.header {
+    background: #fff;
+    padding: 15px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.logo-img-header {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.college-info {
+    width: 100%;
+    padding: 10px 12px;
+    text-align: center;
+}
+
+.college-info h1 {
+    font-size: 1.65rem;
+    color: #ff6b35;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.affiliated-text {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #1a2f5c;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.college-info p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+@media (min-width: 768px) {
+    .header-content {
+        flex-direction: row;       
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;        
+        margin: 0 auto;          
+    }
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+    .logo-section {
+        gap: 15px;
+    }
+    .college-info h1 {
+        font-size: 2.5rem;
+    }
+    .affiliated-text {
+        font-size: 1.1rem;
+    }
+    .college-info p {
+        font-size: 1rem;
+    }
+}
+
+/* ========================
+   NAVIGATION (Mobile First)
+======================== */
+nav {
+    width: 100%;
+    background: #1a2f5c;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Mobile Toggle Button */
+.menu-toggle {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    font-size: 1rem;
+}
+
+/* Navigation Links Container */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+/* Direct navigation links */
+.nav-links > a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    display: block;
+}
+
+.nav-links > a:hover {
+    background: #ff6b35;
+}
+
+/* ========================
+   DROPDOWN STYLES
+======================== */
+.dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.drop-btn:hover {
+    background: #ff6b35;
+}
+
+.nav-arrow {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    background: #2a3e66;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background: #ff6b35;
+}
+.dropdown.active > .dropdown-content {
+    display: flex;
+}
+
+.dropdown.active > .drop-btn .nav-arrow {
+    transform: rotate(180deg);
+}
+
+/* ========================
+   TABLET/DESKTOP (768px+)
+======================== */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    
+    .nav-content {
+        flex-wrap: nowrap; 
+        gap: 0; 
+    }
+    .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;  /* Start with no gap */
+        width: auto;
+        flex-wrap: nowrap;  /* Prevent items from wrapping */
+    }
+
+
+    .nav-links > a,
+    .drop-btn {
+        padding: 10px 12px;  /* Reduced horizontal padding */
+        white-space: nowrap;
+        font-size: 0.95rem;  /* Slightly smaller font */
+    }
+
+    .drop-btn {
+        width: auto;
+    }
+
+    /* Dropdown positioning */
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        margin-top: 5px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        border-radius: 5px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    /* Custom scrollbar */
+    .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: #1a2f5c;
+        border-radius: 4px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background: #ff6b35;
+        border-radius: 4px;
+    }
+
+    /* Show on hover (desktop only) */
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .dropdown:hover > .drop-btn {
+        background: #ff6b35;
+    }
+
+    .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(180deg);
+    }
+
+
+    .dropdown.active > .dropdown-content {
+        display: none;
+    }
+
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+    }
+
+    /* Nested dropdowns */
+    .dropdown-content .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content .drop-btn {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dropdown-content .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown-content {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 2px;
+    }
+}
+
+/* ========================
+   MEDIUM DESKTOP (992px+)
+======================== */
+@media (min-width: 992px) {
+    .nav-content {
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links > a,
+    .drop-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+}
+
+/* ========================
+   LARGE DESKTOP (1200px+)
+======================== */
+@media (min-width: 1200px) {
+    .nav-content {
+        gap: 30px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .dropdown-content {
+        min-width: 220px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+.footer {
+  background: #1a2f5c; 
+  color: white;
+  padding: 40px 20px;
+  border-radius: 15px 15px 0 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer a {
+  color: #ff6b35;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; 
+  gap: 30px;
+}
+
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.footer-logo-section {
+  text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.footer-logo h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ff6b35;
+}
+
+
+.footer-logo-section p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.quick-links {
+  text-align: center;
+}
+
+.quick-links h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ff6b35;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-links ul li {
+  margin-bottom: 8px;
+}
+
+
+.map-section {
+  text-align: center;
+}
+
+.map-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ff6b35;
+}
+
+.map-widget iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+  border-radius: 12px;
+}
+
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  background: #1a2f5c;
+  border-radius: 0 0 15px 15px;
+  font-size: 0.9rem;
+}
+
+
+
+/* all responsive media queries*/
+
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        padding: 0 20px;
+    }
+}
+
+/* Desktop and up */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        padding: 0 30px;
+    }
+}
+
+/* Tablet Screens (768px) */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .footer-logo-section, .quick-links, .map-section {
+    flex: 1;
+    text-align: left;
+  }
+
+  .footer-logo {
+    align-items: flex-start;
+  }
+
+  .map-widget iframe {
+    height: 250px;
+  }
+}
+
+/* Desktop Screens (1200px) */
+@media (min-width: 1200px) {
+  .footer-logo h3 {
+    font-size: 1.6rem;
+  }
+  .quick-links h3, .map-section h3 {
+    font-size: 1.4rem;
+  }
+  .footer-bottom {
+    font-size: 1rem;
+  }
+}
+
+.header1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header1 h1 {
+            color: #ff6b35;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header1 p {
+            color: #1a2f5c;
+            font-size: 1.1rem;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .faculty-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .faculty-card:hover::before {
+            left: 100%;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .faculty-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin: 0 auto 1rem auto;
+            display: block;
+            border: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .faculty-card:hover .faculty-image {
+            transform: scale(1.05);
+        }
+
+        .faculty-info {
+            text-align: center;
+        }
+
+        .faculty-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-title {
+            font-size: 1rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .faculty-qualifications {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .faculty-qualifications h4 {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .qualification-item {
+            background: white;
+            padding: 0.5rem 1rem;
+            margin: 0.3rem 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #2d3748;
+            border-left: 3px solid #667eea;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .faculty-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .email-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .email-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .faculty-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .faculty-card {
+                padding: 2rem;
+            }
+            
+            .faculty-image {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .faculty-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .faculty-card {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Large desktop styles */
+        @media (min-width: 1440px) {
+            .faculty-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Animation for cards appearing */
+        .faculty-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faculty-card:nth-child(1) { animation-delay: 0.1s; }
+        .faculty-card:nth-child(2) { animation-delay: 0.2s; }
+        .faculty-card:nth-child(3) { animation-delay: 0.3s; }
+        .faculty-card:nth-child(4) { animation-delay: 0.4s; }
+        .faculty-card:nth-child(5) { animation-delay: 0.5s; }
+        .faculty-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+
+</style>
+
+<body>
+      <!-- Header -->  
+    <header class="header">  
+        <div class="container">  
+            <div class="header-content">  
+                <div class="logo-section">  
+                    <div class="logo"><img class="logo-img-header" src="https://i.postimg.cc/VknRXB1B/1000340942-removebg-preview.png" loading="lazy" alt="college logo"> </div>  
+                    <div class="college-info">  
+                        <h1>NATIONAL DEGREE COLLEGE</h1>
+                        <p><span class="affiliated-text">(Affiliated with Rayalaseema University,Kurnool)</span></p>   
+  </div>  
+                </div>  
+                                       <!--
+                    <a href="/loginform2.html" class="student-login">Student Login</a> -->
+            </div>  
+        </div>  
+    </header>  
+    <!-- Navigation -->  
+    <nav>
+   <div class="nav-section">
+    <div class="container nav-content">
+   <!-- Mobile Toggle Button -->
+   <button class="menu-toggle">☰ </button>
+
+  <!-- Navigation Links -->
+   <div class="nav-links">
+   <a href="/index.html">Home</a>
+   <a href="/about.html">About</a>
+   <a href="/pages/contact-us.html">Contact</a>
+
+  <!-- Academics Dropdown -->
+   <div class="dropdown">
+  <button class="drop-btn"> Academics
+                               <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+  <div class="dropdown-content">
+ <a href="/pages/college-broucher.html">College Brochure</a>   <a href="/pages/admissions.html">Admissions</a>
+  <a href="/pages/eresources.html">E-Resources</a>
+ <a href="/pages/Gallery.html">Gallery</a>
+     </div>
+       </div>
+
+    <!-- Departments Dropdown -->
+    <div class="dropdown">
+   <button class="drop-btn">
+                            Departments
+                            <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+     <div class="dropdown-content">
+      <a href="/pages/departments/laguages-department.html">Languages</a>
+     <a href="/pages/departments/cs-department.html">Computer Science</a>
+     <a href="/pages/departments/lifescience-department.html">Life Sciences</a>
+    <a href="/pages/departments/maths-department.html">Mathematics</a>
+        </div>
+       </div>
+
+   <!-- Facilities Dropdown -->
+   <div class="dropdown">
+   <button class="drop-btn">
+                            Facilities
+                            <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+  <div class="dropdown-content">
+  <a href="/pages/facilities/clab.html">Computer Lab</a>
+    <a href="/pages/facilities/mph.html">Multi Purpose Hall</a>
+      <a href="/pages/facilities/library.html">Library</a>
+     <a href="/pages/facilities/parking.html">Parking</a>
+                        </div>
+                    </div>
+                        <a href="#">Placements</a>
+  <a href="/pages/news.html">Circulars</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header1">
+            <h1>Our Faculty</h1>
+            <p>Meet our Distinguished Educators</p>
+        </div>
+
+        <div class="faculty-grid">
+            <div class="faculty-card">
+                <img src="https://i.postimg.cc/KzNX9SDm/IMG-20250902-003553.jpg" alt="sai kumar" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">Mr. SAI KUMAR</h3>
+                    <p class="faculty-title"> Head of the Department</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item">Ph.D. Computer science</div>
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="saikumar@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b830?w=300&h=300&fit=crop&crop=face" alt="rama krishna" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">RAMA KRISHNA</h3>
+                    <p class="faculty-title">Lecturer of computer science</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item"> computer science</div>
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="ramakrishna@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <img src="https://images.unsplash.com/pfit=crop&crop=face" alt="bmd rafi" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">B.MD.RAFI</h3>
+                    <p class="faculty-title">lecturer in computer science</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item">computer science</div>
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="bmdrafi@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <img src="httpsoto-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="naveen kumar" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">NAVEEN KUMAR</h3>
+                    <p class="faculty-title">LECTURER IN COMPUTER Science</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item">COMPUTER SCIENCE</div>
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="mailto:naveenkumar@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <img src="https://images=300&fit=crop&crop=face" alt="md ali" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">mohammed ali</h3>
+                    <p class="faculty-title">lecturer in computer science</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item">computer science</div>
+                  
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="mdali@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <img src="https:/1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" alt="badulla" class="faculty-image">
+                <div class="faculty-info">
+                    <h3 class="faculty-name">BADULLA</h3>
+                    <p class="faculty-title">LECTURER IN COMPUTER SCIENCE</p>
+                    <div class="faculty-qualifications">
+                        <h4>Qualifications</h4>
+                        <div class="qualification-item">COMPUTER SCIENCE</div>
+
+                    </div>
+                    <div class="faculty-contact">
+                        <a href="Badulla@college.edu" class="contact-btn email-btn">📧 Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+ <!--new footer -->
+
+   <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo-section">
+          <div class="footer-logo">
+            <div class="logo">
+              <img class="footer-logo-last" src="https://i.postimg.cc/VknRXB1B/1000340942-removebg-preview.png" alt="colegeLogo">
+</div>
+<div><h3>NATIONAL DEGREE COLLEGE</h3></div></div>
+<p>📍 Srinivasa Nagar, Nandyal - 518501</p>
+<p>Andra Pradesh - India</p>
+<p>📧 nationaldegreecollege@gmail.com</p>
+<p> 📞+918777466636</p>
+</div>
+<div class="quick-links">  
+                    <h3>Quick Links</h3>  
+                    <ul>  
+                        <li><a href="#">📅 Events</a></li>  
+                        <li><a href="#">📤 Exports</a></li>  
+                        <li><a href="#">👨‍🏫 Expert Views</a></li>  
+                        <li><a href="#">ℹ️ Information</a></li>  
+                    </ul>  
+                    </div>
+                    <div class="map-section">
+                      <h3>Find Us</h3>
+                      <div class="map-widget">
+                        <iframe  
+            src="https://www.google.com/maps?q=National+Junior+Degree+College+Nandyala&z=16&output=embed"  
+            width="100%"  
+            height="220"  
+            style="border:0; border-radius: 12px;"  
+            allowfullscreen=""  
+            loading="lazy"  
+            referrerpolicy="no-referrer-when-downgrade">  
+        </iframe>  
+    </div>  </div>
+          <!-- Bottom Bar -
+  <div class="footer-bottom">
+    © 2025 National Degree College. All rights reserved.
+  </div> -->
+    </footer>  
+  <script>
+            // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Dropdown Toggle for Mobile Only
+        const dropdownButtons = document.querySelectorAll('.drop-btn');
+
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Only toggle on mobile (screen width < 768px)
+                if (window.innerWidth < 768) {
+                    e.stopPropagation();
+                    const dropdown = this.closest('.dropdown');
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown').forEach(dd => {
+                        if (dd !== dropdown) {
+                            dd.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside (mobile only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 768) {
+                const isClickInsideNav = event.target.closest('nav');
+                if (!isClickInsideNav) {
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    // Close mobile menu if clicking outside
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            }
+        });
+
+        // Clean up on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                // Remove active class from dropdowns on desktop
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+  </script>
+</body>
+
+</html>
