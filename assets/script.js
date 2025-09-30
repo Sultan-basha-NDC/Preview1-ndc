@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Create image element
     const img = document.createElement('img');
-    img.src = '/download_20250930_150213_0000.gif';  // Your GIF file path
+    img.src = '/assets/images/loader.gif';  // Your GIF file path
     img.alt = 'Loading...';
     img.style.cssText = `
         width: 100px;
