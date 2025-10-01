@@ -21,7 +21,10 @@ body {
     padding: 0 12px;
     margin: 0 auto;
 }
-/* header */
+
+/* ========================
+   HEADER STYLES
+======================== */
 .header {
     background: #fff;
     padding: 15px 12px;
@@ -53,7 +56,6 @@ body {
     object-fit: contain;
 }
 
-/* College Info */
 .college-info {
     width: 100%;
     padding: 10px 12px;
@@ -87,7 +89,6 @@ body {
     max-width: 600px;
 }
 
-/* header responive media queries */
 @media (min-width: 768px) {
     .header-content {
         flex-direction: row;       
@@ -105,7 +106,6 @@ body {
     .logo-section {
         gap: 15px;
     }
-
     .college-info h1 {
         font-size: 2.5rem;
     }
@@ -116,186 +116,286 @@ body {
         font-size: 1rem;
     }
 }
+
 /* ========================
-Navigation Base (Mobile First)
+   NAVIGATION (Mobile First)
 ======================== */
 nav {
-  width: 100%;
-  background: #1a2f5c;
-  font-family: 'Roboto', sans-serif;
+    width: 100%;
+    background: #1a2f5c;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1000;
 }
 
 .nav-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 15px;
-  box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
 }
 
 .nav-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 /* Mobile Toggle Button */
 .menu-toggle {
-  background: #ff6b35;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  display: block; 
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    font-size: 1rem;
 }
 
-/* Navlinks  Container */
+/* Navigation Links Container */
 .nav-links {
-  display: none; 
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background 0.3s;
+.nav-links.active {
+    display: flex;
 }
 
-.nav-links a:hover {
-  background: #ff6b35;
+/* Direct navigation links */
+.nav-links > a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    display: block;
 }
 
-/* Dropdown Base */
+.nav-links > a:hover {
+    background: #ff6b35;
+}
+
+/* ========================
+   DROPDOWN STYLES
+======================== */
 .dropdown {
-  position: relative;
+    position: relative;
 }
 
 .drop-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background: none;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-align: left;
+    font-size: 1rem;
 }
 
 .drop-btn:hover {
-  background: #ff6b35;
+    background: #ff6b35;
 }
 
 .nav-arrow {
-  width: 16px;
-  height: 16px;
-  margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 /* Dropdown Content */
 .dropdown-content {
-  display: none;
-  flex-direction: column;
-  position: relative; 
-  background: #2a3e66;
-  margin-top: 5px;
-  border-radius: 5px;
-  overflow: hidden;
+    display: none;
+    flex-direction: column;
+    background: #2a3e66;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
 .dropdown-content a {
-  color: white;
-  padding: 8px 15px;
-  text-decoration: none;
-  font-weight: 500;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    transition: background 0.3s;
 }
 
 .dropdown-content a:hover {
-  background: #ff6b35;
-}
-
-/* ========================
-Mobile Toggle JS (active class)
-======================== */
-.nav-links.active {
-  display: flex;
-}
-
-/* ========================
-Tablet Styles (min-width: 768px)
-======================== */
-@media (min-width: 768px) {
-  .menu-toggle {
-    display: none; 
-  }
-
-  .nav-links {
-    display: flex !important; 
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    width: auto;
-  }
-
-  .nav-links a,
-  .drop-btn {
-    padding: 8px 12px;
-  }
-
-  /* Dropdowns */
-  .dropdown-content {
-    position: absolute; 
-    top: 100%;
-    left: 0;
-    min-width: 180px;
-    z-index: 999;
-  }
-
-  /* Show dropdowns on hover */
-  .dropdown:hover > .dropdown-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* multi-level) */
-  .dropdown-content .dropdown-content {
-    top: 0;
-    left: 100%;
-  }
+    background: #ff6b35;
 }
 .dropdown.active > .dropdown-content {
-display:flex;
-flex-direction: column;
+    display: flex;
+}
+
+.dropdown.active > .drop-btn .nav-arrow {
+    transform: rotate(180deg);
 }
 
 /* ========================
-Desktop Styles (min-width: 1200px)
+   TABLET/DESKTOP (768px+)
+======================== */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    
+    .nav-content {
+        flex-wrap: nowrap; 
+        gap: 0; 
+    }
+    .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;  /* Start with no gap */
+        width: auto;
+        flex-wrap: nowrap;  /* Prevent items from wrapping */
+    }
+
+
+    .nav-links > a,
+    .drop-btn {
+        padding: 10px 12px;  /* Reduced horizontal padding */
+        white-space: nowrap;
+        font-size: 0.95rem;  /* Slightly smaller font */
+    }
+
+    .drop-btn {
+        width: auto;
+    }
+
+    /* Dropdown positioning */
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        margin-top: 5px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        border-radius: 5px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    /* Custom scrollbar */
+    .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: #1a2f5c;
+        border-radius: 4px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background: #ff6b35;
+        border-radius: 4px;
+    }
+
+    /* Show on hover (desktop only) */
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .dropdown:hover > .drop-btn {
+        background: #ff6b35;
+    }
+
+    .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(180deg);
+    }
+
+
+    .dropdown.active > .dropdown-content {
+        display: none;
+    }
+
+    .dropdown:hover > .dropdown-content {
+        display: flex !important;
+    }
+
+    /* Nested dropdowns */
+    .dropdown-content .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content .drop-btn {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dropdown-content .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown:hover > .drop-btn .nav-arrow {
+        transform: rotate(-90deg);
+    }
+
+    .dropdown-content .dropdown-content {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 2px;
+    }
+}
+
+/* ========================
+   MEDIUM DESKTOP (992px+)
+======================== */
+@media (min-width: 992px) {
+    .nav-content {
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links > a,
+    .drop-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+}
+
+/* ========================
+   LARGE DESKTOP (1200px+)
 ======================== */
 @media (min-width: 1200px) {
-  .nav-content {
-    gap: 30px;
-  }
+    .nav-content {
+        gap: 30px;
+    }
 
-  .nav-links a,
-  .drop-btn {
-    padding: 10px 15px;
-    font-size: 1rem;
-  }
+    .nav-links {
+        gap: 10px;
+    }
 
-  .dropdown-content {
-    min-width: 200px;
-  }
+    .dropdown-content {
+        min-width: 220px;
+    }
 }
+
+
 
 
 /* Hero Section */
@@ -576,6 +676,8 @@ Desktop Styles (min-width: 1200px)
   }
 }
 
+
+
 /* Desktop Screens (1200px) */
 @media (min-width: 1200px) {
   .footer-logo h3 {
@@ -588,7 +690,15 @@ Desktop Styles (min-width: 1200px)
     font-size: 1rem;
   }
 }
-
+.bottombar{
+    margin: 0;
+    padding: 10px;
+    color: white;
+    background-color: #1a2f5c;
+text-align: center;
+    font-size: bold;
+    font-family:serif;
+}
   </style>
 </head>
 
@@ -763,7 +873,12 @@ Desktop Styles (min-width: 1200px)
   <div class="footer-bottom">
     © 2025 National Degree College. All rights reserved.
   </div> -->
+  
     </footer>  
+        <footer>
+          <div class="bottombar">
+        copyright© 2025 | All rights reserved® - NDC'ian ASSH
+   </div> </footer>
   <script>
 const menuBtn = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');

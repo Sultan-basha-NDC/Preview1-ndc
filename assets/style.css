@@ -1591,4 +1591,11 @@ Tablet screens (768px) */
   }
 }
 
-
+.bottombar{
+    margin: 0;
+    color: white;
+    background-color: #1a2f5c;
+    text-align: center;
+    font-size: 10px;
+    font-family:serif;
+}
