@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Resources</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#fff; }
+    header { background:#004080; color:white; text-align:center; padding:20px; }
+    header h1 { margin:0; font-size:2rem; }
+    .back-button-container {
+  position: relative;
+  top: 60px; 
+  background-color:transparent; 
+  margin: 10px;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.back-button {
+  background-color: #1a2f5c;
+  color: white;
+  border: none;
+  padding: 0.7em 1.5em; 
+  font-size: 1rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: auto;
+  max-width: 90%;
+  white-space: nowrap;
+}
+
+.back-button:hover {
+  background-color: #ff6b35;
+  transform: scale(1.05);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .back-button {
+    font-size: 1.1rem;
+    padding: 0.8em 2em;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .back-button {
+    font-size: 1.2rem;
+    padding: 1em 2.5em;
+  }
+}
+
+
+    .container { padding: 20px; max-width: 900px; margin:auto; }
+    h2 { color:#ff6600; margin-bottom:15px; }
+    .semester { margin-bottom:20px; border:1px solid #ccc; border-radius:10px; padding:10px; }
+    .semester h3 { margin:0; cursor:pointer; background:#ff6600; color:white; padding:10px; border-radius:6px; }
+    .subjects { display:none; padding:10px; }
+    .subjects a { display:inline-block; margin:5px; padding:8px 12px; background:#004080; color:white; text-decoration:none; border-radius:6px; }
+    .subjects a.locked { background:gray; cursor:not-allowed; }
+    .login-box { max-width:300px; margin:50px auto; padding:25px; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+    .login-box input { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; }
+    .login-box button { width:100%; padding:10px; background:#ff6600; color:white; border:none; border-radius:6px; cursor:pointer; }
+    .logout { text-align:right; margin:15px 0; display:none; }
+    .logout button { background:#cc0000; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>N D C | E-Resources</h1>
+</header>
+<div class="back-button-container">
+                   <a href="/index.html" class="back-button" >&#8592; Back </a>
+</div>
+<div class="container">
+
+  <!-- Login Form -->
+  <div class="login-box" id="login-box">
+    <h2>Student Login</h2>
+    <p id="error-msg" style="color:red; text-align:center;"></p>
+    <input type="text" id="userid" placeholder="Student ID">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="logout" id="logout-section">
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Semesters -->
+  <div class="semester">
+    <h3 onclick="toggleSubjects(this)">Semester 1 ⬇</h3>
+    <div class="subjects">
+      <a href="#" class="locked" onclick="requireLogin(event)">C Programming Notes</a>
+      <a href="#" class="locked" onclick="requireLogin(event)">Mathematics Notes</a>
+    </div>
+  </div>
+
+  <div class="semester">
+    <h3 onclick="toggleSubjects(this)">Semester 2 ⬇</h3>
+    <div class="subjects">
+      <a href="#" class="locked" onclick="requireLogin(event)">Data Structures Notes</a>
+      <a href="#" class="locked" onclick="requireLogin(event)">Discrete Mathematics Notes</a>
+    </div>
+  </div>
+
+  <div class="semester">
+    <h3 onclick="toggleSubjects(this)">Semester 3 ⬇</h3>
+    <div class="subjects">
+      <a href="#" class="locked" onclick="requireLogin(event)">DBMS Notes</a>
+      <a href="#" class="locked" onclick="requireLogin(event)">Operating Systems Notes</a>
+    </div>
+  </div>
+
+</div>
+  
+<script>
+
+  // Hardcoded users
+  const users = { "student1":"pass123", "student2":"abc123", "ashwak":"college2025" ,
+    "asif":"asif@ndc",
+    "saikumar":"hod@ndc",
+    "ram":"lecturer@ndc",
+    "lecturers":"lecturers@ndc"
+  };
+  let loggedIn = false;
+
+  function toggleSubjects(el){
+    const subjects = el.nextElementSibling;
+    subjects.style.display = (subjects.style.display === "block") ? "none" : "block";
+  }
+
+  function requireLogin(e){
+    if(!loggedIn){
+      e.preventDefault();
+      alert("Please login first!");
+    }
+  }
+
+  function login(){
+    const userId = document.getElementById("userid").value;
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("error-msg");
+
+    if(users[userId] && users[userId] === password){
+      loggedIn = true;
+      errorMsg.textContent = "";
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("logout-section").style.display = "block";
+
+      // Unlock links (only remove "locked" class, keep href intact or update to real PDFs)
+      document.querySelectorAll(".subjects a").forEach(a => {
+        a.classList.remove("locked");
+        a.removeAttribute("onclick"); // remove requireLogin so it works multiple times
+      });
+
+    } else {
+      errorMsg.textContent = "❌ Invalid Student ID or Password";
+    }
+  }
+
+  function logout(){
+    loggedIn = false;
+    document.getElementById("logout-section").style.display = "none";
+    document.getElementById("login-box").style.display = "block";
+
+    // Lock links again
+    document.querySelectorAll(".subjects a").forEach(a => {
+      a.classList.add("locked");
+      a.setAttribute("onclick","requireLogin(event)");
+    });
+
+    // Optionally hide all subjects after logout
+    document.querySelectorAll(".subjects").forEach(sub => sub.style.display="none");
+  }
+</script>
