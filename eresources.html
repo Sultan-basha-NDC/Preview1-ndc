@@ -1,182 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Resources</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#fff; }
-    header { background:#004080; color:white; text-align:center; padding:20px; }
-    header h1 { margin:0; font-size:2rem; }
-    .back-button-container {
-  position: relative;
-  top: 60px; 
-  background-color:transparent; 
-  margin: 10px;
-  padding: 10px 0;
-  text-align: center;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College E-Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.back-button {
-  background-color: #1a2f5c;
-  color: white;
-  border: none;
-  padding: 0.7em 1.5em; 
-  font-size: 1rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: auto;
-  max-width: 90%;
-  white-space: nowrap;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
 
-.back-button:hover {
-  background-color: #ff6b35;
-  transform: scale(1.05);
-}
+        /* Login Page Styles */
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease;
+        }
 
-/* Tablet */
-@media (min-width: 768px) {
-  .back-button {
-    font-size: 1.1rem;
-    padding: 0.8em 2em;
-  }
-}
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-/* Desktop */
-@media (min-width: 992px) {
-  .back-button {
-    font-size: 1.2rem;
-    padding: 1em 2.5em;
-  }
-}
+        .login-header h1 {
+            color: #ff6b35;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
 
+        .login-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
 
-    .container { padding: 20px; max-width: 900px; margin:auto; }
-    h2 { color:#ff6600; margin-bottom:15px; }
-    .semester { margin-bottom:20px; border:1px solid #ccc; border-radius:10px; padding:10px; }
-    .semester h3 { margin:0; cursor:pointer; background:#ff6600; color:white; padding:10px; border-radius:6px; }
-    .subjects { display:none; padding:10px; }
-    .subjects a { display:inline-block; margin:5px; padding:8px 12px; background:#004080; color:white; text-decoration:none; border-radius:6px; }
-    .subjects a.locked { background:gray; cursor:not-allowed; }
-    .login-box { max-width:300px; margin:50px auto; padding:25px; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-    .login-box input { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; }
-    .login-box button { width:100%; padding:10px; background:#ff6600; color:white; border:none; border-radius:6px; cursor:pointer; }
-    .logout { text-align:right; margin:15px 0; display:none; }
-    .logout button { background:#cc0000; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; }
-  </style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+            animation: shake 0.4s ease;
+        }
+
+        /* Materials Page Styles */
+        .materials-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1200px;
+            padding: 1.5rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .materials-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .materials-header h1 {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .logout-btn {
+            padding: 0.625rem 1.25rem;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #e63946;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .material-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .material-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .material-preview {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            gap: 1rem;
+        }
+
+        .material-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .material-info {
+            flex: 1;
+        }
+
+        .material-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .material-category {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .material-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .material-links {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+
+        .material-card.expanded .material-links {
+            max-height: 500px;
+            padding: 1.25rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .download-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #f0f4ff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-link:last-child {
+            margin-bottom: 0;
+        }
+
+        .download-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .download-icon {
+            font-size: 1.25rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 576px) {
+            .materials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .material-preview {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .material-image {
+                width: 100%;
+                height: 150px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 992px) {
+            .login-container {
+                padding: 2.5rem;
+            }
+
+            .login-header h1 {
+                font-size: 2rem;
+            }
+
+            .materials-container {
+                padding: 2.5rem;
+            }
+
+            .materials-header h1 {
+                font-size: 2rem;
+            }
+
+            .materials-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .material-image {
+                height: 180px;
+            }
+
+            .material-name {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .materials-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-header">
+            <h1>NDC Portal</h1>
+            <p>E-Resources for students</p>
+        </div>
+        
+        <div id="errorMessage" class="error-message">
+            Invalid credentials. Please try again.
+        </div>
 
-<header>
-  <h1>N D C | E-Resources</h1>
-</header>
-<div class="back-button-container">
-                   <a href="/index.html" class="back-button" >&#8592; Back </a>
-</div>
-<div class="container">
-
-  <!-- Login Form -->
-  <div class="login-box" id="login-box">
-    <h2>Student Login</h2>
-    <p id="error-msg" style="color:red; text-align:center;"></p>
-    <input type="text" id="userid" placeholder="Student ID">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-
-  <!-- Logout Button -->
-  <div class="logout" id="logout-section">
-    <button onclick="logout()">Logout</button>
-  </div>
-
-  <!-- Semesters -->
-  <div class="semester">
-    <h3 onclick="toggleSubjects(this)">Semester 1 ⬇</h3>
-    <div class="subjects">
-      <a href="#" class="locked" onclick="requireLogin(event)">C Programming Notes</a>
-      <a href="#" class="locked" onclick="requireLogin(event)">Mathematics Notes</a>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter your student ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+        </form>
     </div>
-  </div>
 
-  <div class="semester">
-    <h3 onclick="toggleSubjects(this)">Semester 2 ⬇</h3>
-    <div class="subjects">
-      <a href="#" class="locked" onclick="requireLogin(event)">Data Structures Notes</a>
-      <a href="#" class="locked" onclick="requireLogin(event)">Discrete Mathematics Notes</a>
+    <!-- Materials Page -->
+    <div id="materialsPage" class="materials-container hidden">
+        <div class="materials-header">
+            <h1>Study Materials</h1>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+
+        <div class="materials-grid" id="materialsGrid">
+            <!-- Materials will be populated here -->
+        </div>
     </div>
-  </div>
+    <footer>
+    </footer>
 
-  <div class="semester">
-    <h3 onclick="toggleSubjects(this)">Semester 3 ⬇</h3>
-    <div class="subjects">
-      <a href="#" class="locked" onclick="requireLogin(event)">DBMS Notes</a>
-      <a href="#" class="locked" onclick="requireLogin(event)">Operating Systems Notes</a>
-    </div>
-  </div>
 
-</div>
-  
-<script>
+    <script>
+        // Hardcoded student credentials
+        const students = {
+     'assh':'bfly@ndc',
+     '24D01019009': 'ashwak@ndc',
+     '24D01019008': 'asif@ndc',
+     'saikumar': 'hod@ndc',
+     'lecturer': 'lecturer@ndc',
+     'bca': 'bca@ndc',
+     'bsc': 'bsc@ndc',
+     'bcom':'bcom@ndc'
+        };
 
-  // Hardcoded users
-  const users = { "student1":"pass123", "student2":"abc123", "ashwak":"college2025" ,
-    "asif":"asif@ndc",
-    "saikumar":"hod@ndc",
-    "ram":"lecturer@ndc",
-    "lecturers":"lecturers@ndc"
-  };
-  let loggedIn = false;
+        // Study materials data
+        const materials = [
+            {
+                id: 1,
+                name: 'Data Structures',
+                category: 'Computer Science',
+                image: 'https://via.placeholder.com/300x200/667eea/ffffff?text=Data+Structures',
+                links: [
+                    { name: 'Unit 1 - Arrays & Linked Lists', url: '#' },
+                    { name: 'Unit 2 - Stacks & Queues', url: '#' },
+                    { name: 'Unit 3 - Trees & Graphs', url: '#' }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Database Systems',
+                category: 'Computer Science',
+                image: 'https://via.placeholder.com/300x200/764ba2/ffffff?text=Database+Systems',
+                links: [
+                    { name: 'SQL Basics', url: '#' },
+                    { name: 'Normalization Notes', url: '#' },
+                    { name: 'Transaction Management', url: '#' }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Engineering Mathematics',
+                category: 'Mathematics',
+                image: 'https://via.placeholder.com/300x200/f093fb/ffffff?text=Mathematics',
+                links: [
+                    { name: 'Calculus Notes', url: '#' },
+                    { name: 'Linear Algebra', url: '#' },
+                    { name: 'Differential Equations', url: '#' }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Operating Systems',
+                category: 'Computer Science',
+                image: 'https://via.placeholder.com/300x200/4facfe/ffffff?text=Operating+Systems',
+                links: [
+                    { name: 'Process Management', url: '#' },
+                    { name: 'Memory Management', url: '#' },
+                    { name: 'File Systems', url: '#' }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Computer Networks',
+                category: 'Computer Science',
+                image: 'https://via.placeholder.com/300x200/00f2fe/ffffff?text=Networks',
+                links: [
+                    { name: 'OSI Model', url: '#' },
+                    { name: 'TCP/IP Protocol', url: '#' },
+                    { name: 'Network Security', url: '#' }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Software Engineering',
+                category: 'Computer Science',
+                image: 'https://via.placeholder.com/300x200/fa709a/ffffff?text=Software+Engineering',
+                links: [
+                    { name: 'SDLC Models', url: '#' },
+                    { name: 'UML Diagrams', url: '#' },
+                    { name: 'Testing Techniques', url: '#' }
+                ]
+            }
+        ];
 
-  function toggleSubjects(el){
-    const subjects = el.nextElementSibling;
-    subjects.style.display = (subjects.style.display === "block") ? "none" : "block";
-  }
+        // DOM Elements
+        const loginPage = document.getElementById('loginPage');
+        const materialsPage = document.getElementById('materialsPage');
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const materialsGrid = document.getElementById('materialsGrid');
 
-  function requireLogin(e){
-    if(!loggedIn){
-      e.preventDefault();
-      alert("Please login first!");
-    }
-  }
+        // Check if already logged in
+        if (sessionStorage.getItem('loggedIn') === 'true') {
+            showMaterialsPage();
+        }
 
-  function login(){
-    const userId = document.getElementById("userid").value;
-    const password = document.getElementById("password").value;
-    const errorMsg = document.getElementById("error-msg");
+        // Login Form Submit
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentId').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (students[studentId] && students[studentId] === password) {
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('studentId', studentId);
+                errorMessage.style.display = 'none';
+                showMaterialsPage();
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        });
 
-    if(users[userId] && users[userId] === password){
-      loggedIn = true;
-      errorMsg.textContent = "";
-      document.getElementById("login-box").style.display = "none";
-      document.getElementById("logout-section").style.display = "block";
+        // Logout Button
+        logoutBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.removeItem('studentId');
+            showLoginPage();
+        });
 
-      // Unlock links (only remove "locked" class, keep href intact or update to real PDFs)
-      document.querySelectorAll(".subjects a").forEach(a => {
-        a.classList.remove("locked");
-        a.removeAttribute("onclick"); // remove requireLogin so it works multiple times
-      });
+        // Show Materials Page
+        function showMaterialsPage() {
+            loginPage.classList.add('hidden');
+            materialsPage.classList.remove('hidden');
+            renderMaterials();
+        }
 
-    } else {
-      errorMsg.textContent = "❌ Invalid Student ID or Password";
-    }
-  }
+        // Show Login Page
+        function showLoginPage() {
+            materialsPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+            loginForm.reset();
+            errorMessage.style.display = 'none';
+        }
 
-  function logout(){
-    loggedIn = false;
-    document.getElementById("logout-section").style.display = "none";
-    document.getElementById("login-box").style.display = "block";
-
-    // Lock links again
-    document.querySelectorAll(".subjects a").forEach(a => {
-      a.classList.add("locked");
-      a.setAttribute("onclick","requireLogin(event)");
-    });
-
-    // Optionally hide all subjects after logout
-    document.querySelectorAll(".subjects").forEach(sub => sub.style.display="none");
-  }
-</script>
+        // Render Materials
+        function renderMaterials() {
+            materialsGrid.innerHTML = '';
+            
+            materials.forEach(material => {
+                const card = document.createElement('div');
+                card.className = 'material-card';
+                card.innerHTML = `
+                    <div class="material-preview">
+                        <img src="${material.image}" alt="${material.name}" class="material-image">
+                        <div class="material-info">
+                            <div class="material-name">${material.name}</div>
+                            <div class="material-category">${material.category}</div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="material-links">
+                        ${material.links.map(link => `
+                            <a href="${link.url}" class="download-link" download>
+                                <span class="download-icon">📥</span>
+                                <span>${link.name}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Toggle expand on click
+                const preview = card.querySelector('.material-preview');
+                preview.addEventListener('click', () => {
+                    card.classList.toggle('expanded');
+                });
+                
+                materialsGrid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
