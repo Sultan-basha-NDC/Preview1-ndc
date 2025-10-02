@@ -87,25 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleCourse(courseType) {
     const courseInfo = document.getElementById('course-info');
     const courseDetails = {
-        'bcp': {
-            title: 'Bachelor of Computer Programming',
-            details: 'Duration: 3 years | Eligibility: 10+2 with PCM | Career: Software Developer, Programmer, System Analyst'
-        },
-        'bba': {
-            title: 'Bachelor of Business Administration',
-            details: 'Duration: 3 years | Eligibility: 10+2 any stream | Career: Business Manager, Entrepreneur, Marketing Executive'
-        },
-        'b2c': {
-            title: 'Bachelor of Commerce (B2C)',
-            details: 'Duration: 3 years | Eligibility: 10+2 with Commerce | Career: E-commerce Specialist, Digital Marketing, Sales Manager'
+        'bca': {
+            title: 'Bachelor of Computer Application',
+            details: 'Duration: 3 years | Eligibility: 10+2 any stream| Career: software development, web development, cybersecurity, data analysis, network administration, mobile app development, and digital marketing'
         },
         'bsc': {
-            title: 'Bachelor of Science',
-            details: 'Duration: 3 years | Eligibility: 10+2 with PCB/PCM | Career: Research Scientist, Lab Technician, Data Analyst'
+            title: 'Bachelor of Science (computer science)',
+            details: 'Duration: 3 years | Eligibility: 10+2 with PCM | Career: Software Developer, Data Analyst, Web Developer, Cybersecurity Analyst, IT Consultant, and Systems Analyst'
+        },
+        'bscl': {
+            title: 'Bachelor of Science (life sciences)',
+            details: 'Duration: 3 years | Eligibility: 10+2 | Career: research (Biotechnologist, Microbiologist, Research Assistant), healthcare (Clinical Research Associate, Lab Technician), industry (Pharmaceutical Sales, Food Scientist), environmental conservation (Natural Resource Specialist)'
         },
         'bcom': {
             title: 'Bachelor of Commerce',
-            details: 'Duration: 3 years | Eligibility: 10+2 any stream | Career: Accountant, Financial Analyst, Tax Consultant'
+            details: 'Duration: 3 years | Eligibility: 10+2 any stream | Career: Accountant,Financial Analyst,Tax consultant'
+        },
+        'ba': {
+            title: 'Bachelor of Arts',
+            details: 'Duration: 3 years | Eligibility: 10+2 any stream | Career: Digital Marketing (content writer, social media manager), Journalism & Mass Communication, Teaching (with a B.Ed.)'
         }
     };
 
