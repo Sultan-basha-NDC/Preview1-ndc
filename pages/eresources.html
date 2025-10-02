@@ -120,10 +120,14 @@
         }
 
         .materials-header {
+            margin-bottom: 2rem;
+        }
+
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -131,6 +135,55 @@
         .materials-header h1 {
             color: #667eea;
             font-size: 1.5rem;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: #667eea;
+            pointer-events: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
 
         .logout-btn {
@@ -310,6 +363,11 @@
                 font-size: 2rem;
             }
 
+            .search-input {
+                padding: 1.125rem 3.5rem 1.125rem 1.25rem;
+                font-size: 1.05rem;
+            }
+
             .materials-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 1.5rem;
@@ -362,29 +420,46 @@
     <!-- Materials Page -->
     <div id="materialsPage" class="materials-container hidden">
         <div class="materials-header">
-            <h1>Study Materials</h1>
-            <button id="logoutBtn" class="logout-btn">Logout</button>
+            <div class="header-top">
+                <h1>NDC Materials</h1>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+            
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search for materials, subjects"
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
         </div>
 
         <div class="materials-grid" id="materialsGrid">
             <!-- Materials will be populated here -->
         </div>
+        
+        <div id="noResults" class="no-results hidden">
+            <div class="no-results-icon">📚</div>
+            <h3>No materials found</h3>
+            <p>Try adjusting your search terms</p>
+        </div>
     </div>
-    <footer>
-    </footer>
 
 
     <script>
         // Hardcoded student credentials
         const students = {
-     'assh':'bfly@ndc',
-     '24D01019009': 'ashwak@ndc',
-     '24D01019008': 'asif@ndc',
-     'saikumar': 'hod@ndc',
-     'lecturer': 'lecturer@ndc',
-     'bca': 'bca@ndc',
-     'bsc': 'bsc@ndc',
-     'bcom':'bcom@ndc'
+            'assh':'bfly@ndc',
+            '24D01019009': 'ashwak@ndc',
+            '24D01019008': 'asif@ndc',
+            'saikumar': 'hod@ndc',
+            'lecturer': 'lecturer@ndc',
+            'bca': 'bca@ndc',
+            'bsc': 'bsc@ndc',
+            'bcom':'bcom@ndc'
         };
 
         // Study materials data
@@ -464,6 +539,11 @@
         const errorMessage = document.getElementById('errorMessage');
         const logoutBtn = document.getElementById('logoutBtn');
         const materialsGrid = document.getElementById('materialsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        // Track filtered materials
+        let filteredMaterials = materials;
 
         // Check if already logged in
         if (sessionStorage.getItem('loggedIn') === 'true') {
@@ -495,10 +575,38 @@
             showLoginPage();
         });
 
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredMaterials = materials;
+            } else {
+                filteredMaterials = materials.filter(material => {
+                    // Search in material name
+                    const nameMatch = material.name.toLowerCase().includes(searchTerm);
+                    
+                    // Search in category
+                    const categoryMatch = material.category.toLowerCase().includes(searchTerm);
+                    
+                    // Search in link names
+                    const linkMatch = material.links.some(link => 
+                        link.name.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    return nameMatch || categoryMatch || linkMatch;
+                });
+            }
+            
+            renderMaterials();
+        });
+
         // Show Materials Page
         function showMaterialsPage() {
             loginPage.classList.add('hidden');
             materialsPage.classList.remove('hidden');
+            searchInput.value = '';
+            filteredMaterials = materials;
             renderMaterials();
         }
 
@@ -514,7 +622,16 @@
         function renderMaterials() {
             materialsGrid.innerHTML = '';
             
-            materials.forEach(material => {
+            if (filteredMaterials.length === 0) {
+                materialsGrid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            materialsGrid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+            
+            filteredMaterials.forEach(material => {
                 const card = document.createElement('div');
                 card.className = 'material-card';
                 card.innerHTML = `
@@ -545,6 +662,6 @@
                 materialsGrid.appendChild(card);
             });
         }
-    </script>
+</script>
 </body>
 </html>
