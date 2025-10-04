@@ -948,12 +948,12 @@
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="material-links">
-                        ${material.links.map(link => `
-                            <a href="${link.url}" class="download-link" download>
-                                <span class="download-icon">📥</span>
-                                <span>${link.name}</span>
-                            </a>
-                        `).join('')}
+${material.links.map(link => `
+    <a href="${link.url}" class="download-link" download>
+     <span class="download-icon">📥</span>
+        <span>${link.name}</span>
+    </a>
+`).join('')}
                     </div>
                 `;
                 
