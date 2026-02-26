@@ -38,8 +38,8 @@ body {
 }
 
 .logo {
-    width: 10px;
-    height: 10px;
+    width: 100px;
+    height: 100px;
 }
 
 .logo-img-header {
@@ -55,7 +55,7 @@ body {
 }
 
 .college-info h1 {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
     color: #ff6b35;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
@@ -70,7 +70,7 @@ body {
     color: #1a2f5c;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     margin-bottom: 6px;
 }
 
@@ -92,8 +92,8 @@ body {
         margin: 0 auto;          
     }
     .logo {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
     }
     .logo-section {
         gap: 15px;
@@ -245,6 +245,10 @@ nav {
    
 ======================== */
 @media (min-width: 768px) {
+     .logo{
+        height:100px;
+        width:100px;
+    }
     /* Hide mobile toggle */
     .menu-toggle {
         display: none;
@@ -363,6 +367,11 @@ nav {
    Add spacing when there's more room
 ======================== */
 @media (min-width: 992px) {
+
+     .logo{
+        height:100px;
+        width:100px;
+    }
     .nav-content {
         gap: 20px;
     }
@@ -382,6 +391,10 @@ nav {
    LARGE DESKTOP (1200px+)
 ======================== */
 @media (min-width: 1200px) {
+    .logo{
+        height:100px;
+        width:100px;
+    }
     .nav-content {
         gap: 30px;
     }
@@ -1599,5 +1612,6 @@ Tablet screens (768px) */
     font-size: 10px;
     font-family:serif;
 }
+
 
 
