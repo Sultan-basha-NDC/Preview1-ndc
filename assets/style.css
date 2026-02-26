@@ -34,12 +34,12 @@ body {
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 10px;
+    height: 10px;
 }
 
 .logo-img-header {
@@ -1599,4 +1599,5 @@ Tablet screens (768px) */
     font-size: 10px;
     font-family:serif;
 }
+
 
